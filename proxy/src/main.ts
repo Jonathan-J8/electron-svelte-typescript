@@ -7,9 +7,8 @@ import './ipc';
 
 const directory = join(__dirname, 'public');
 
-reload(directory, {
-  // electron: join(__dirname, '../..', 'node_modules', '.bin', 'electron'),
-});
+// we just want hot reload if files from public directory changes
+reload(directory, {});
 
 const loadURL = serve({ directory });
 
@@ -19,7 +18,6 @@ const init = async () => {
 
 process.on('uncaughtException', console.log);
 
-// if (require('electron-squirrel-startup')) app.quit();
 app.on('ready', init);
 app.on('activate', init);
 app.on('window-all-closed', () => {
