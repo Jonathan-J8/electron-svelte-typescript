@@ -1,6 +1,9 @@
 # Electron + Svelte + Typescript Template
 
-For others builds options, check electron-builder[https://www.electron.build/] options.
+Simple template to quickly start devoloping in [Typscript](https://www.typescriptlang.org/) with
+[Electron](https://www.electronjs.org/) as back-end with a [Svelte](https://svelte.dev/) SPA.  
+Client side navigation are made with [svelte-routing](https://github.com/EmilTholin/svelte-routing).  
+For others builds options, check [electron-builder](https://www.electron.build/).
 
 Made with :
 
