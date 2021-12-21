@@ -1,0 +1,62 @@
+{
+  "name": "electron-svelte-ts",
+  "version": "1.0.0",
+  "private": true,
+  "author": "J.Attar (https://www.artisansdidees.com)",
+  "main": "build/main.js",
+  "authors": "J. Attar",
+  "description": "electron+svelte+typscript template",
+  "build": {
+    "win": {
+      "target": "portable",
+      "icon": "build/public/icon.ico"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "resources",
+      "output": "dist/"
+    }
+  },
+  "scripts": {
+    "dev:electron": "tsc --project proxy/tsconfig.json && electron .",
+    "dev:svelte": "rollup -c -w",
+    "dev": "concurrently \"npm run dev:svelte\" \"npm run dev:electron\"",
+    "start": "sirv public --no-clear",
+    "build:electron": "tsc --project proxy/tsconfig.json",
+    "build:svelte": "rollup -c",
+    "build": "npm run build:electron && npm run build:svelte && electron-builder build",
+    "check": "svelte-check --tsconfig app/tsconfig.json"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^2.0.0",
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
+    "electron-packager": "^15.4.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0",
+    "svelte-check": "^2.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-serve": "^1.1.0",
+    "fs-extra": "^10.0.0",
+    "sirv-cli": "^1.0.0",
+    "svelte-routing": "^1.6.0",
+    "tslib": "^2.0.0"
+  }
+}
