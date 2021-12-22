@@ -1,3 +1,8 @@
+:root {
+  --dark: rgb(44, 44, 44);
+  --light: lightgray;
+}
+
 html,
 body {
   position: relative;
@@ -6,7 +11,8 @@ body {
 }
 
 body {
-  color: white;
+  color: var(--light);
+  background-color: var(--dark);
   margin: 0;
   padding: 8px;
   box-sizing: border-box;
@@ -15,7 +21,7 @@ body {
 }
 
 a {
-  color: rgb(0, 100, 200);
+  color: var(--dark);
   text-decoration: none;
   padding: 20px;
 }
