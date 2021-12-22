@@ -37,7 +37,6 @@ export default [
         inlineSources: !production,
       }),
       copy({
-        hook: 'watchChange',
         targets: [{ src: 'app/public', dest: `build/` }],
       }),
       production && terser(),
