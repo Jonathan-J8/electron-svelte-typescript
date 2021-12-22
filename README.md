@@ -1,16 +1,25 @@
 # Electron + Svelte + Typescript Template
 
-Simple template to quickly start devoloping in [Typscript](https://www.typescriptlang.org/) with
-[Electron](https://www.electronjs.org/) as back-end and [Svelte](https://svelte.dev/) SPA.  
+Simple template to quickly start devoloping with [Typscript](https://www.typescriptlang.org/) a
+[Electron](https://www.electronjs.org/) Desktop App + [Svelte](https://svelte.dev/) SPA.  
 Client side navigation are made with [svelte-routing](https://github.com/EmilTholin/svelte-routing).  
 For others builds options, check [electron-builder](https://www.electron.build/).
 
-Made with :
+## Made with
 
 - electron : https://www.electronjs.org/
 - electron-builder : https://www.electron.build/
 - rollup : https://rollupjs.org/guide/en/
 - svelte : https://svelte.dev/
+
+## Features
+
+[x] hot-reload  
+[x] ipc communication  
+[x] client side navigation  
+[x] Typescript  
+[x] minimal requirement for Svelte SPA + Electron Desktop App  
+[x] easy to customize
 
 ## Script
 

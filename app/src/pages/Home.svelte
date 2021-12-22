@@ -4,7 +4,7 @@
   <p>It provide the minimal requirement to start developping a Svelte SPA with Electron.</p>
   <p>
     Checkout <a href="https://github.com/ptkdev-boilerplate/svelte-electron-boilerplate"
-      >svelte-electron-boilerplate</a
+      >https://github.com/ptkdev-boilerplate/svelte-electron-boilerplate</a
     > if you want a more complete solution.
   </p>
 </main>

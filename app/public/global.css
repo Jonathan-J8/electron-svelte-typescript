@@ -24,10 +24,11 @@ a {
   color: var(--dark);
   text-decoration: none;
   padding: 20px;
+  text-decoration: underline;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline dotted;
 }
 
 a:visited {

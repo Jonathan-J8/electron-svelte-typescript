@@ -2,9 +2,8 @@
   "name": "electron-svelte-ts",
   "version": "1.0.0",
   "private": true,
-  "author": "J.Attar (https://www.artisansdidees.com)",
+  "author": "J.Attar (https://github.com/Jonathan-J8)",
   "main": "build/main.js",
-  "authors": "J. Attar",
   "description": "electron+svelte+typscript template",
   "build": {
     "win": {
