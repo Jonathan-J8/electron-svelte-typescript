@@ -13,11 +13,11 @@ For others builds options, check out [electron-builder](https://www.electron.bui
 
 ## Features
 
-- [x] hot-reload
-- [x] ipc communication
-- [x] client side navigation
-- [x] Typescript
-- [x] minimal requirement for Svelte SPA + Electron Desktop App
+- [x] live-reload
+- [x] ipcRenderer in global window
+- [x] client-side navigation
+- [x] typescript
+- [x] minimal requirement for a Svelte+Electron App
 - [x] easy to customize
 
 ## Scripts
