@@ -34,7 +34,7 @@ npm run build
 .   
 ├── app                     # Svelte app    
 ├── build                   # Transpiled files generated with "npm run dev"  
-├── dist                    # Compiled files generated with "npm run build"     
+├── dist                    # Packaged/compiled app generated with "npm run build"     
 ├── proxy                   # Electron app   
 ├── package-lock.json                      
 ├── package.json                      
