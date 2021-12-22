@@ -14,12 +14,12 @@ For others builds options, check [electron-builder](https://www.electron.build/)
 
 ## Features
 
-[x] hot-reload  
-[x] ipc communication  
-[x] client side navigation  
-[x] Typescript  
-[x] minimal requirement for Svelte SPA + Electron Desktop App  
-[x] easy to customize
+- [x] hot-reload
+- [x] ipc communication
+- [x] client side navigation
+- [x] Typescript
+- [x] minimal requirement for Svelte SPA + Electron Desktop App
+- [x] easy to customize
 
 ## Script
 
