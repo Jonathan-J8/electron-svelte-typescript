@@ -20,7 +20,7 @@ For others builds options, check out [electron-builder](https://www.electron.bui
 - [x] minimal requirement for Svelte SPA + Electron Desktop App
 - [x] easy to customize
 
-## Script
+## Scripts
 
 ```
 npm i
