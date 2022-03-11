@@ -1,6 +1,6 @@
 # Electron + Svelte + Typescript Template
 
-Simple template to quickly start devoloping in [Typescript](https://www.typescriptlang.org/) an
+Simple template to quickly start developing in [Typescript](https://www.typescriptlang.org/) an
 [Electron Desktop App](https://www.electronjs.org/) + [Svelte SPA](https://svelte.dev/).  
 For others builds options, check out [electron-builder](https://www.electron.build/) and modify build
 field in package.json.
@@ -17,8 +17,8 @@ field in package.json.
 - [x] typescript
 - [x] live-reload
 - [x] client-side navigation
-- [x] minimal requirement for a Svelte+Electron App
 - [x] SharedArrayBuffer supports
+- [x] minimal requirement for a Svelte+Electron App
 - [x] easy to customize
 
 ## Scripts
@@ -33,10 +33,10 @@ npm run build
 
 <pre>
 .   
-├── app                     # Svelte app    
+├── app-svelte              # Svelte app    
+├── app-electron            # Electron app   
 ├── build                   # Transpiled files generated with "npm run dev"  
 ├── dist                    # Packaged/compiled app generated with "npm run build"     
-├── proxy                   # Electron app   
 ├── package-lock.json                      
 ├── package.json                      
 ├── README.md                      
