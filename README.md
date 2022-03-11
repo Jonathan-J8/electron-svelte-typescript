@@ -14,12 +14,12 @@ field in package.json.
 
 ## Features
 
-- [x] typescript
-- [x] live-reload
-- [x] client-side navigation
+- [x] Typescript
+- [x] Live-reload
+- [x] Client-side navigation
 - [x] SharedArrayBuffer supports
-- [x] minimal requirement for a Svelte+Electron App
-- [x] easy to customize
+- [x] Minimal requirement for a Svelte+Electron App
+- [x] Easy to customize
 
 ## Scripts
 
