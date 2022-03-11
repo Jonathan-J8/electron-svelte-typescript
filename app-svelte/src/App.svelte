@@ -2,7 +2,7 @@
   import { Router, Link, Route } from 'svelte-routing';
   import Home from './pages/Home.svelte';
   import About from './pages/About.svelte';
-  import Ipc from './pages/Ipc.svelte';
+  import Electron from './pages/Electron.svelte';
 
   export let url = '';
 </script>
@@ -14,12 +14,12 @@
         <h1>Electron + Svelte + Typescript</h1></Link
       >
       <Link to="/">Home</Link>
-      <Link to="ipc">Ipc</Link>
+      <Link to="electron">Electron</Link>
       <Link to="about">About</Link>
     </nav>
     <div class="container">
-      <Route path="about" component={About} />
-      <Route path="ipc" component={Ipc} />
+      <Route path="about"><About /></Route>
+      <Route path="electron"><Electron /></Route>
       <Route path="/"><Home /></Route>
     </div>
   </Router>

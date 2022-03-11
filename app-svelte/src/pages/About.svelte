@@ -1,14 +1,19 @@
+<script lang="ts">
+  const app = Object.entries(process.env);
+</script>
+
 <h1>About</h1>
 
-<p>
-  Made by <a href="https://github.com/Jonathan-J8" target="_blank">https://github.com/Jonathan-J8</a>
-</p>
 <p>
   Github project at <a href="https://github.com/Jonathan-J8/electron-svelte-typescript" target="_blank"
     >https://github.com/Jonathan-J8/electron-svelte-typescript
   </a>
 </p>
-<p>Version 1.0.0</p>
+<ul>
+  {#each app as [key, value]}
+    <li>{key} : {value}</li>
+  {/each}
+</ul>
 
 <style>
   a {

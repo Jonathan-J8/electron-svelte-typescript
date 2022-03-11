@@ -1,17 +1,16 @@
-import { app, BrowserWindow, globalShortcut } from 'electron';
+import { app, BrowserWindow, globalShortcut, Menu } from 'electron';
 import { join } from 'path';
 import isDev from 'electron-is-dev';
+import menu from './menu';
 
 export const getMainWindow = (): BrowserWindow | null =>
   process.env.ELECTRON_MAIN_WINDOW
     ? BrowserWindow.fromId(parseInt(process.env.ELECTRON_MAIN_WINDOW))
     : null;
 
-export const createMainWindow = async (
-  loadURL: (window: BrowserWindow) => Promise<void>,
-): Promise<BrowserWindow> => {
+export const createMainWindow = (): BrowserWindow => {
   if (getMainWindow()) getMainWindow();
-
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
   let mainWindow: BrowserWindow | null = new BrowserWindow({
     x: 0,
     y: 0,
@@ -27,22 +26,36 @@ export const createMainWindow = async (
     backgroundColor: '#222222',
     webPreferences: {
       nodeIntegration: false,
-      contextIsolation: false,
+      contextIsolation: true,
       allowRunningInsecureContent: false,
-      preload: join(app.getAppPath(), 'build', 'preload.js'),
+      preload: join(app.getAppPath(), 'build', 'src', 'preload.js'),
     },
   });
   process.env.ELECTRON_MAIN_WINDOW = `${mainWindow.id}`;
 
-  await loadURL(mainWindow);
-
-  if (isDev) {
-    mainWindow.maximize();
-    mainWindow.webContents.openDevTools();
-  }
+  let ounce = false;
+  mainWindow.on('ready-to-show', () => {
+    if (isDev && mainWindow && !ounce) {
+      ounce = true;
+      mainWindow.maximize();
+      mainWindow.webContents.openDevTools();
+    }
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  mainWindow.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
+    // needed for SharedArrayBuffer
+    const requestHeaders = {
+      ...details.requestHeaders,
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Resource-Policy': 'same-site',
+    };
+
+    callback({ cancel: false, requestHeaders });
   });
 
   globalShortcut.register('f5', () => {

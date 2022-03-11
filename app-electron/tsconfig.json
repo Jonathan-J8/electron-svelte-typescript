@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": ["dom", "es2015", "es2016", "es2017"],
+    "lib": ["es2015", "es2016", "es2017"],
     "outDir": "../build/",
     "allowJs": true,
     "moduleResolution": "node",
@@ -23,5 +23,5 @@
     "noImplicitThis": true,
     "esModuleInterop": true
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts", "../app-svelte/global.d.ts"]
 }
