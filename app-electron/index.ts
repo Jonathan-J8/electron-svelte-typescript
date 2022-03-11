@@ -22,7 +22,7 @@ const init = async () => {
 
 process.on('uncaughtException', console.log);
 
-// app.commandLine.appendSwitch('enable-features', 'SharedArrayBuffer');
+app.commandLine.appendSwitch('enable-features', 'SharedArrayBuffer');
 app.on('ready', init);
 app.on('activate', init);
 app.on('window-all-closed', () => {

@@ -2,7 +2,8 @@
 
 Simple template to quickly start devoloping in [Typescript](https://www.typescriptlang.org/) an
 [Electron Desktop App](https://www.electronjs.org/) + [Svelte SPA](https://svelte.dev/).  
-For others builds options, check out [electron-builder](https://www.electron.build/) and modify build field in package.json.
+For others builds options, check out [electron-builder](https://www.electron.build/) and modify build
+field in package.json.
 
 ## Made with
 
@@ -13,11 +14,11 @@ For others builds options, check out [electron-builder](https://www.electron.bui
 
 ## Features
 
-- [x] live-reload
-- [x] ipcRenderer in global window
-- [x] client-side navigation
 - [x] typescript
+- [x] live-reload
+- [x] client-side navigation
 - [x] minimal requirement for a Svelte+Electron App
+- [x] SharedArrayBuffer supports
 - [x] easy to customize
 
 ## Scripts
