@@ -5,8 +5,9 @@
 <h1>About</h1>
 
 <p>
-  Github project at <a href="https://github.com/Jonathan-J8/electron-svelte-typescript" target="_blank"
-    >https://github.com/Jonathan-J8/electron-svelte-typescript
+  Github project at
+  <a href="https://github.com/Jonathan-J8/electron-svelte-typescript" target="_blank" rel="noreferrer">
+    https://github.com/Jonathan-J8/electron-svelte-typescript
   </a>
 </p>
 <ul>
