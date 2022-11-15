@@ -4,9 +4,7 @@ import isDev from 'electron-is-dev';
 import menu from './menu';
 
 export const getMainWindow = (): BrowserWindow | null =>
-  process.env.ELECTRON_MAIN_WINDOW
-    ? BrowserWindow.fromId(parseInt(process.env.ELECTRON_MAIN_WINDOW))
-    : null;
+  process.env.ELECTRON_MAIN_WINDOW ? BrowserWindow.fromId(parseInt(process.env.ELECTRON_MAIN_WINDOW)) : null;
 
 export const createMainWindow = (): BrowserWindow => {
   if (getMainWindow()) getMainWindow();
@@ -24,13 +22,16 @@ export const createMainWindow = (): BrowserWindow => {
     autoHideMenuBar: true,
     icon: join(app.getAppPath(), 'public', 'icon.ico'),
     backgroundColor: '#222222',
+    // externalDependencies: 'none',
+
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
       allowRunningInsecureContent: false,
       preload: join(app.getAppPath(), 'build', 'src', 'preload.js'),
     },
   });
+
   process.env.ELECTRON_MAIN_WINDOW = `${mainWindow.id}`;
 
   let ounce = false;

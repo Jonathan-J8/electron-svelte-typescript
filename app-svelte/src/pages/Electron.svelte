@@ -1,5 +1,5 @@
 <h2>Electron infos</h2>
-{#await window.electron.getAppInfos() then infos}
+{#await window?.electron?.getAppInfos() then infos}
   <ul>
     {#each Object.entries(infos) as [key, value]}
       <li>{key} : {value}</li>
