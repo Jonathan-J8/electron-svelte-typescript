@@ -1,17 +1,19 @@
+<script>
+  import { getElectronInfos } from "../ipc";
+</script>
+
 <h2>Electron infos</h2>
-{#await window?.electron?.getAppInfos() then infos}
-  {#if infos}
-    <ul>
-      {#each Object.entries(infos) as [key, value]}
-        <li>{key} : {value}</li>
-      {/each}
-    </ul>
-  {:else}
-    <p>Error: no electron context found</p>
-  {/if}
-{:catch err}
-  <p>Error: {err.message}</p>
-{/await}
+<ul>
+  <li>vite : {import.meta.url}</li>
+
+  {#await getElectronInfos() then infos}
+    {#each Object.entries(infos) as [key, value]}
+      <li>{key} : {value}</li>
+    {/each}
+  {:catch err}
+    <li>Error: {err.message}</li>
+  {/await}
+</ul>
 
 <br />
 <br />

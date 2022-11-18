@@ -1037,12 +1037,12 @@ const get_default_slot_context = (ctx) => ({
   params: ctx[2],
   location: ctx[4]
 });
-function create_if_block$1(ctx) {
+function create_if_block(ctx) {
   let current_block_type_index;
   let if_block;
   let if_block_anchor;
   let current;
-  const if_block_creators = [create_if_block_1, create_else_block$1];
+  const if_block_creators = [create_if_block_1, create_else_block];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (ctx2[0] !== null)
@@ -1100,7 +1100,7 @@ function create_if_block$1(ctx) {
     }
   };
 }
-function create_else_block$1(ctx) {
+function create_else_block(ctx) {
   let current;
   const default_slot_template = ctx[10].default;
   const default_slot = create_slot(default_slot_template, ctx, ctx[9], get_default_slot_context);
@@ -1227,7 +1227,7 @@ function create_if_block_1(ctx) {
 function create_fragment$5(ctx) {
   let if_block_anchor;
   let current;
-  let if_block = ctx[1] !== null && ctx[1].route === ctx[7] && create_if_block$1(ctx);
+  let if_block = ctx[1] !== null && ctx[1].route === ctx[7] && create_if_block(ctx);
   return {
     c() {
       if (if_block)
@@ -1248,7 +1248,7 @@ function create_fragment$5(ctx) {
             transition_in(if_block, 1);
           }
         } else {
-          if_block = create_if_block$1(ctx2);
+          if_block = create_if_block(ctx2);
           if_block.c();
           transition_in(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -1539,50 +1539,10 @@ class Home extends SvelteComponent {
   }
 }
 const About_svelte_svelte_type_style_lang = "";
-function get_each_context$1(ctx, list, i) {
-  const child_ctx = ctx.slice();
-  child_ctx[1] = list[i][0];
-  child_ctx[2] = list[i][1];
-  return child_ctx;
-}
-function create_each_block$1(ctx) {
-  let li;
-  let t0_value = ctx[1] + "";
-  let t0;
-  let t1;
-  let t2_value = ctx[2] + "";
-  let t2;
-  return {
-    c() {
-      li = element("li");
-      t0 = text(t0_value);
-      t1 = text(" : ");
-      t2 = text(t2_value);
-    },
-    m(target, anchor) {
-      insert(target, li, anchor);
-      append(li, t0);
-      append(li, t1);
-      append(li, t2);
-    },
-    p: noop,
-    d(detaching) {
-      if (detaching)
-        detach(li);
-    }
-  };
-}
 function create_fragment$2(ctx) {
   let h1;
   let t1;
   let p;
-  let t4;
-  let ul;
-  let each_value = ctx[0];
-  let each_blocks = [];
-  for (let i = 0; i < each_value.length; i += 1) {
-    each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
-  }
   return {
     c() {
       h1 = element("h1");
@@ -1591,42 +1551,13 @@ function create_fragment$2(ctx) {
       p = element("p");
       p.innerHTML = `Github project at
   <a href="https://github.com/Jonathan-J8/electron-svelte-typescript" target="_blank" rel="noreferrer" class="svelte-bz69ze">https://github.com/Jonathan-J8/electron-svelte-typescript</a>`;
-      t4 = space();
-      ul = element("ul");
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].c();
-      }
     },
     m(target, anchor) {
       insert(target, h1, anchor);
       insert(target, t1, anchor);
       insert(target, p, anchor);
-      insert(target, t4, anchor);
-      insert(target, ul, anchor);
-      for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(ul, null);
-      }
     },
-    p(ctx2, [dirty]) {
-      if (dirty & 1) {
-        each_value = ctx2[0];
-        let i;
-        for (i = 0; i < each_value.length; i += 1) {
-          const child_ctx = get_each_context$1(ctx2, each_value, i);
-          if (each_blocks[i]) {
-            each_blocks[i].p(child_ctx, dirty);
-          } else {
-            each_blocks[i] = create_each_block$1(child_ctx);
-            each_blocks[i].c();
-            each_blocks[i].m(ul, null);
-          }
-        }
-        for (; i < each_blocks.length; i += 1) {
-          each_blocks[i].d(1);
-        }
-        each_blocks.length = each_value.length;
-      }
-    },
+    p: noop,
     i: noop,
     o: noop,
     d(detaching) {
@@ -1636,17 +1567,11 @@ function create_fragment$2(ctx) {
         detach(t1);
       if (detaching)
         detach(p);
-      if (detaching)
-        detach(t4);
-      if (detaching)
-        detach(ul);
-      destroy_each(each_blocks, detaching);
     }
   };
 }
 function instance$1($$self) {
-  const app = Object.entries(process.env);
-  return [app];
+  return [];
 }
 class About extends SvelteComponent {
   constructor(options) {
@@ -1654,6 +1579,13 @@ class About extends SvelteComponent {
     init(this, options, instance$1, create_fragment$2, safe_not_equal, {});
   }
 }
+const isIpc = () => !!(window == null ? void 0 : window.ipc);
+const getElectronInfos = async () => {
+  var _a;
+  if (!isIpc())
+    throw new Error("no window.ipc found");
+  return await ((_a = window == null ? void 0 : window.ipc) == null ? void 0 : _a.getAppInfos());
+};
 function get_each_context(ctx, list, i) {
   const child_ctx = ctx.slice();
   child_ctx[1] = list[i][0];
@@ -1661,75 +1593,30 @@ function get_each_context(ctx, list, i) {
   return child_ctx;
 }
 function create_catch_block(ctx) {
-  let p;
+  let li;
   let t0;
   let t1_value = ctx[5].message + "";
   let t1;
   return {
     c() {
-      p = element("p");
+      li = element("li");
       t0 = text("Error: ");
       t1 = text(t1_value);
     },
     m(target, anchor) {
-      insert(target, p, anchor);
-      append(p, t0);
-      append(p, t1);
+      insert(target, li, anchor);
+      append(li, t0);
+      append(li, t1);
     },
     p: noop,
     d(detaching) {
       if (detaching)
-        detach(p);
+        detach(li);
     }
   };
 }
 function create_then_block(ctx) {
-  let if_block_anchor;
-  function select_block_type(ctx2, dirty) {
-    if (ctx2[0])
-      return create_if_block;
-    return create_else_block;
-  }
-  let current_block_type = select_block_type(ctx);
-  let if_block = current_block_type(ctx);
-  return {
-    c() {
-      if_block.c();
-      if_block_anchor = empty();
-    },
-    m(target, anchor) {
-      if_block.m(target, anchor);
-      insert(target, if_block_anchor, anchor);
-    },
-    p(ctx2, dirty) {
-      if_block.p(ctx2, dirty);
-    },
-    d(detaching) {
-      if_block.d(detaching);
-      if (detaching)
-        detach(if_block_anchor);
-    }
-  };
-}
-function create_else_block(ctx) {
-  let p;
-  return {
-    c() {
-      p = element("p");
-      p.textContent = "Error: no electron context found";
-    },
-    m(target, anchor) {
-      insert(target, p, anchor);
-    },
-    p: noop,
-    d(detaching) {
-      if (detaching)
-        detach(p);
-    }
-  };
-}
-function create_if_block(ctx) {
-  let ul;
+  let each_1_anchor;
   let each_value = Object.entries(ctx[0]);
   let each_blocks = [];
   for (let i = 0; i < each_value.length; i += 1) {
@@ -1737,16 +1624,16 @@ function create_if_block(ctx) {
   }
   return {
     c() {
-      ul = element("ul");
       for (let i = 0; i < each_blocks.length; i += 1) {
         each_blocks[i].c();
       }
+      each_1_anchor = empty();
     },
     m(target, anchor) {
-      insert(target, ul, anchor);
       for (let i = 0; i < each_blocks.length; i += 1) {
-        each_blocks[i].m(ul, null);
+        each_blocks[i].m(target, anchor);
       }
+      insert(target, each_1_anchor, anchor);
     },
     p(ctx2, dirty) {
       if (dirty & 0) {
@@ -1759,7 +1646,7 @@ function create_if_block(ctx) {
           } else {
             each_blocks[i] = create_each_block(child_ctx);
             each_blocks[i].c();
-            each_blocks[i].m(ul, null);
+            each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
           }
         }
         for (; i < each_blocks.length; i += 1) {
@@ -1769,9 +1656,9 @@ function create_if_block(ctx) {
       }
     },
     d(detaching) {
-      if (detaching)
-        detach(ul);
       destroy_each(each_blocks, detaching);
+      if (detaching)
+        detach(each_1_anchor);
     }
   };
 }
@@ -1806,16 +1693,18 @@ function create_pending_block(ctx) {
   return { c: noop, m: noop, p: noop, d: noop };
 }
 function create_fragment$1(ctx) {
-  var _a;
   let h20;
   let t1;
-  let t2;
-  let br0;
-  let t3;
-  let br1;
+  let ul;
+  let li;
   let t4;
-  let h21;
+  let t5;
+  let br0;
   let t6;
+  let br1;
+  let t7;
+  let h21;
+  let t9;
   let p;
   let info = {
     ctx,
@@ -1828,21 +1717,25 @@ function create_fragment$1(ctx) {
     value: 0,
     error: 5
   };
-  handle_promise((_a = window == null ? void 0 : window.electron) == null ? void 0 : _a.getAppInfos(), info);
+  handle_promise(getElectronInfos(), info);
   return {
     c() {
       h20 = element("h2");
       h20.textContent = "Electron infos";
       t1 = space();
-      info.block.c();
-      t2 = space();
-      br0 = element("br");
-      t3 = space();
-      br1 = element("br");
+      ul = element("ul");
+      li = element("li");
+      li.textContent = `vite : ${import.meta.url}`;
       t4 = space();
+      info.block.c();
+      t5 = space();
+      br0 = element("br");
+      t6 = space();
+      br1 = element("br");
+      t7 = space();
       h21 = element("h2");
       h21.textContent = "Preload script";
-      t6 = space();
+      t9 = space();
       p = element("p");
       p.innerHTML = `Go to app-electron/src/preload.ts if you want to customize global import from electron. <br/>
   Don&#39;t forget to declare your code in app-svelte/src/vite-env.d.ts`;
@@ -1850,16 +1743,19 @@ function create_fragment$1(ctx) {
     m(target, anchor) {
       insert(target, h20, anchor);
       insert(target, t1, anchor);
-      info.block.m(target, info.anchor = anchor);
-      info.mount = () => t2.parentNode;
-      info.anchor = t2;
-      insert(target, t2, anchor);
+      insert(target, ul, anchor);
+      append(ul, li);
+      append(ul, t4);
+      info.block.m(ul, info.anchor = null);
+      info.mount = () => ul;
+      info.anchor = null;
+      insert(target, t5, anchor);
       insert(target, br0, anchor);
-      insert(target, t3, anchor);
-      insert(target, br1, anchor);
-      insert(target, t4, anchor);
-      insert(target, h21, anchor);
       insert(target, t6, anchor);
+      insert(target, br1, anchor);
+      insert(target, t7, anchor);
+      insert(target, h21, anchor);
+      insert(target, t9, anchor);
       insert(target, p, anchor);
     },
     p(new_ctx, [dirty]) {
@@ -1873,23 +1769,25 @@ function create_fragment$1(ctx) {
         detach(h20);
       if (detaching)
         detach(t1);
-      info.block.d(detaching);
+      if (detaching)
+        detach(ul);
+      info.block.d();
       info.token = null;
       info = null;
       if (detaching)
-        detach(t2);
+        detach(t5);
       if (detaching)
         detach(br0);
       if (detaching)
-        detach(t3);
+        detach(t6);
       if (detaching)
         detach(br1);
       if (detaching)
-        detach(t4);
+        detach(t7);
       if (detaching)
         detach(h21);
       if (detaching)
-        detach(t6);
+        detach(t9);
       if (detaching)
         detach(p);
     }
@@ -1902,7 +1800,7 @@ class Electron extends SvelteComponent {
   }
 }
 const App_svelte_svelte_type_style_lang = "";
-function create_default_slot_7(ctx) {
+function create_default_slot_6(ctx) {
   let h1;
   return {
     c() {
@@ -1917,21 +1815,6 @@ function create_default_slot_7(ctx) {
     d(detaching) {
       if (detaching)
         detach(h1);
-    }
-  };
-}
-function create_default_slot_6(ctx) {
-  let t;
-  return {
-    c() {
-      t = text("Home");
-    },
-    m(target, anchor) {
-      insert(target, t, anchor);
-    },
-    d(detaching) {
-      if (detaching)
-        detach(t);
     }
   };
 }
@@ -2054,37 +1937,28 @@ function create_default_slot(ctx) {
   let t1;
   let link2;
   let t2;
-  let link3;
-  let t3;
   let div;
   let route0;
-  let t4;
+  let t3;
   let route1;
-  let t5;
+  let t4;
   let route2;
   let current;
   link0 = new Link({
-    props: {
-      to: "/",
-      $$slots: { default: [create_default_slot_7] },
-      $$scope: { ctx }
-    }
-  });
-  link1 = new Link({
     props: {
       to: "/",
       $$slots: { default: [create_default_slot_6] },
       $$scope: { ctx }
     }
   });
-  link2 = new Link({
+  link1 = new Link({
     props: {
       to: "/electron",
       $$slots: { default: [create_default_slot_5] },
       $$scope: { ctx }
     }
   });
-  link3 = new Link({
+  link2 = new Link({
     props: {
       to: "/about",
       $$slots: { default: [create_default_slot_4] },
@@ -2121,13 +1995,11 @@ function create_default_slot(ctx) {
       t1 = space();
       create_component(link2.$$.fragment);
       t2 = space();
-      create_component(link3.$$.fragment);
-      t3 = space();
       div = element("div");
       create_component(route0.$$.fragment);
-      t4 = space();
+      t3 = space();
       create_component(route1.$$.fragment);
-      t5 = space();
+      t4 = space();
       create_component(route2.$$.fragment);
       attr(nav, "class", "svelte-1ycb7t6");
       attr(div, "class", "container svelte-1ycb7t6");
@@ -2139,14 +2011,12 @@ function create_default_slot(ctx) {
       mount_component(link1, nav, null);
       append(nav, t1);
       mount_component(link2, nav, null);
-      append(nav, t2);
-      mount_component(link3, nav, null);
-      insert(target, t3, anchor);
+      insert(target, t2, anchor);
       insert(target, div, anchor);
       mount_component(route0, div, null);
-      append(div, t4);
+      append(div, t3);
       mount_component(route1, div, null);
-      append(div, t5);
+      append(div, t4);
       mount_component(route2, div, null);
       current = true;
     },
@@ -2166,11 +2036,6 @@ function create_default_slot(ctx) {
         link2_changes.$$scope = { dirty, ctx: ctx2 };
       }
       link2.$set(link2_changes);
-      const link3_changes = {};
-      if (dirty & 2) {
-        link3_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      link3.$set(link3_changes);
       const route0_changes = {};
       if (dirty & 2) {
         route0_changes.$$scope = { dirty, ctx: ctx2 };
@@ -2193,7 +2058,6 @@ function create_default_slot(ctx) {
       transition_in(link0.$$.fragment, local);
       transition_in(link1.$$.fragment, local);
       transition_in(link2.$$.fragment, local);
-      transition_in(link3.$$.fragment, local);
       transition_in(route0.$$.fragment, local);
       transition_in(route1.$$.fragment, local);
       transition_in(route2.$$.fragment, local);
@@ -2203,7 +2067,6 @@ function create_default_slot(ctx) {
       transition_out(link0.$$.fragment, local);
       transition_out(link1.$$.fragment, local);
       transition_out(link2.$$.fragment, local);
-      transition_out(link3.$$.fragment, local);
       transition_out(route0.$$.fragment, local);
       transition_out(route1.$$.fragment, local);
       transition_out(route2.$$.fragment, local);
@@ -2215,9 +2078,8 @@ function create_default_slot(ctx) {
       destroy_component(link0);
       destroy_component(link1);
       destroy_component(link2);
-      destroy_component(link3);
       if (detaching)
-        detach(t3);
+        detach(t2);
       if (detaching)
         detach(div);
       destroy_component(route0);
@@ -2287,7 +2149,8 @@ class App extends SvelteComponent {
     init(this, options, instance, create_fragment, safe_not_equal, { url: 0 });
   }
 }
+const app = "";
 new App({
   target: document.body
 });
-//# sourceMappingURL=index.2d96acd1.js.map
+//# sourceMappingURL=index.b0b82cca.js.map

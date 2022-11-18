@@ -1,5 +1,5 @@
 <script lang="ts">
-  const app = Object.entries(process.env);
+  const app = Object.entries(import.meta);
 </script>
 
 <h1>About</h1>
@@ -10,11 +10,6 @@
     https://github.com/Jonathan-J8/electron-svelte-typescript
   </a>
 </p>
-<ul>
-  {#each app as [key, value]}
-    <li>{key} : {value}</li>
-  {/each}
-</ul>
 
 <style>
   a {

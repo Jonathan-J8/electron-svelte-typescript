@@ -13,7 +13,6 @@
       <Link to="/">
         <h1>Electron + Svelte + Typescript</h1>
       </Link>
-      <Link to="/">Home</Link>
       <Link to="/electron">Electron</Link>
       <Link to="/about">About</Link>
     </nav>
