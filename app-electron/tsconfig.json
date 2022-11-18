@@ -23,5 +23,5 @@
     "noImplicitThis": true,
     "esModuleInterop": true
   },
-  "include": ["./**/*.ts", "../app-svelte/global.d.ts"]
+  "include": ["./**/*.ts"]
 }

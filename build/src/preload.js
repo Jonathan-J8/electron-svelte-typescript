@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var electron_1 = require("electron");
-electron_1.contextBridge.exposeInMainWorld('electron', {
+electron_1.contextBridge.exposeInMainWorld('ipc', {
     on: function (channel, listener) {
         return electron_1.ipcRenderer.on(channel, listener);
     },
