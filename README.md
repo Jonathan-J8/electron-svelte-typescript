@@ -11,6 +11,7 @@ field in package.json.
 - electron-builder : https://www.electron.build/
 - rollup : https://rollupjs.org/guide/en/
 - svelte : https://svelte.dev/
+- vite : https://vitejs.dev/
 
 ## Features
 
@@ -18,7 +19,7 @@ field in package.json.
 - [x] Live-reload
 - [x] Client-side navigation
 - [x] SharedArrayBuffer supports
-- [x] Minimal requirement for a Svelte+Electron App
+- [x] Basic Ipc bridge
 - [x] Easy to customize
 
 ## Scripts
@@ -39,6 +40,5 @@ npm run build
 ├── dist                    # Packaged/compiled app generated with "npm run build"     
 ├── package-lock.json                      
 ├── package.json                      
-├── README.md                      
-└── rollup.config.js   
+└── README.md                      
 </pre>

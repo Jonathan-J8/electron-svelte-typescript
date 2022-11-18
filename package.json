@@ -1,7 +1,7 @@
 {
   "name": "electron-svelte-ts",
   "version": "2.1.0",
-  "private": true,
+  "private": false,
   "author": "Jonathan-J8 (https://github.com/Jonathan-J8)",
   "main": "build/index.js",
   "description": "electron+svelte+typscript template",
