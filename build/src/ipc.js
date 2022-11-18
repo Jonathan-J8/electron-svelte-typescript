@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var electron_1 = require("electron");
-var window_1 = require("./window");
 var electron_is_dev_1 = tslib_1.__importDefault(require("electron-is-dev"));
 electron_1.ipcMain.handle('APP_INFOS', function () { return ({
     isDev: electron_is_dev_1.default,
@@ -14,8 +13,3 @@ electron_1.ipcMain.handle('APP_INFOS', function () { return ({
     logs: electron_1.app.getPath('logs'),
     crashDumps: electron_1.app.getPath('crashDumps'),
 }); });
-electron_1.ipcMain.handle('APP_RELOAD', function () {
-    var win = (0, window_1.getMainWindow)();
-    if (win)
-        win.webContents.reloadIgnoringCache();
-});

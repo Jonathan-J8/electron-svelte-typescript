@@ -1,9 +1,8 @@
-import template from './template';
+import edit from './edit';
+import view from './view';
+import window from './window';
+import help from './help';
 
-template.push({
-  label: 'My Menu',
-
-  submenu: [],
-});
+const template: any[] = [edit, view, window, help];
 
 export default template;
