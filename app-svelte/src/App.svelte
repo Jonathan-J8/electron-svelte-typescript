@@ -4,7 +4,7 @@
   import About from "./pages/About.svelte";
   import Electron from "./pages/Electron.svelte";
 
-  export let url = "";
+  export let url = "/";
 </script>
 
 <main>
